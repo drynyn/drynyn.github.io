@@ -5,6 +5,7 @@
 <h1>Idle Game</h1>
 <p>Points: <span id="points"></span></p>
 <p>Level: <span id="level"></span></p>
+<button id="upgradeButton" onclick="upgrade()">Upgrade</button>
 
 <script>
 class Game {
@@ -30,15 +31,20 @@ function updateUI() {
     levelElement.innerHTML = game.level;
 }
 
-while (true) {
-    // simulate earning points over time
+function upgrade() {
+    if(game.points >= game.level * 10){
+        game.upgrade();
+        updateUI();
+    }
+    else {
+        alert("Not Enough points");
+    }
+}
+
+setInterval(() => {
     game.earnPoints(game.level);
     updateUI();
-    if (game.points >= game.level * 10) {
-        game.upgrade();
-    }
-    await new Promise(resolve => setTimeout(resolve, 1000));
-}
+}, 1000);
 </script>
 
 </body>
