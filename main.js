@@ -11,13 +11,20 @@ class Game {
         this.points += points;
     }
 }
-
 const game = new Game();
+
+const pointsElement = document.getElementById("points");
+const levelElement = document.getElementById("level");
+
+function updateUI() {
+    pointsElement.innerHTML = game.points;
+    levelElement.innerHTML = game.level;
+}
 
 while (true) {
     // simulate earning points over time
     game.earnPoints(game.level);
-    console.log("Points: ", game.points);
+    updateUI();
     if (game.points >= game.level * 10) {
         game.upgrade();
     }
