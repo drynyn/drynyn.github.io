@@ -3,48 +3,50 @@
 <body>
 
 <h1>Idle Game</h1>
-<p>Points: <span id="points"></span></p>
+<p>Thoughts: <span id="thoughts"></span></p>
 <p>Level: <span id="level"></span></p>
 <button id="upgradeButton" onclick="upgrade()">Upgrade</button>
+<button id="meditateButton" onclick="meditate()">Meditate</button>
 
 <script>
 class Game {
     constructor() {
         this.level = 1;
-        this.points = 0;
+        this.thoughts = 0;
     }
     upgrade() {
-        this.points -= this.level * 10;
+        this.thoughts -= this.level * 10;
         this.level += 1;
     }
-    earnPoints(points) {
-        this.points += points;
+    earnThoughts(thoughts) {
+        this.thoughts += thoughts;
     }
 }
 const game = new Game();
 
-const pointsElement = document.getElementById("points");
+const thoughtsElement = document.getElementById("thoughts");
 const levelElement = document.getElementById("level");
 
 function updateUI() {
-    pointsElement.innerHTML = game.points;
+    thoughtsElement.innerHTML = game.thoughts;
     levelElement.innerHTML = game.level;
 }
 
 function upgrade() {
-    if(game.points >= game.level * 10){
+    if(game.thoughts >= game.level * 10){
         game.upgrade();
         updateUI();
     }
     else {
-        alert("Not Enough points");
+        alert("Not Enough thoughts");
     }
 }
 
-setInterval(() => {
-    game.earnPoints(game.level);
+function meditate() {
+    game.earnThoughts(1);
     updateUI();
-}, 1000);
+}
+
 </script>
 
 </body>
