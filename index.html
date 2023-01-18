@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Idle Game</h1>
+<p>Thoughts: <span id="thoughts"></span></p>
+<p>Level: <span id="level"></span></p>
+<button id="upgradeButton" onclick="upgrade()">Upgrade</button>
+
+<script>
 class Game {
     constructor() {
         this.level = 1;
@@ -25,17 +35,17 @@ function upgrade() {
     if(game.thoughts >= game.level * 10){
         game.upgrade();
         updateUI();
-        setInterval(() => {
-            game.earnThoughts(game.level/10);
-            updateUI();
-        }, 1000);
     }
     else {
         alert("Not Enough thoughts");
     }
 }
 
-function meditate() {
-    game.earnThoughts(1);
+setInterval(() => {
+    game.earnThoughts(game.level/10);
     updateUI();
-}
+}, 1000);
+</script>
+
+</body>
+</html>
